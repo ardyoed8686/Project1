@@ -5,26 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <!--Import Google Icon Font-->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!--Import materialize.css-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+     <!-- jQuery -->
+     <script src="https://code.jquery.com/jquery.js"></script>
+
+     <!-- Firebase References -->
+   <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-database.js"></script>
+
+
     <title>Real Eastate App Project 1</title>
 </head>
 <body>
+
 <div class="container">
-    <div class="parallax-container">
-        <div class="parallax"><img src="images/parallax1.jpg"></div>
-        </div>
-        <div class="section white">
-            <div class="row container">
-            <h2 class="header">Parallax</h2>
-            <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
-            </div>
-            </div>
-            <div class="parallax-container">
-            <div class="parallax"><img src="images/parallax2.jpg"></div>
-            </div>
+       
+    <form>
+        <div class="form-row">
+            <div class="col-7">
+                <input type="text" class="form-control" placeholder="City">
+                </div>
+                <div class="col">
+                <input type="text" class="form-control" placeholder="State">
+                </div>
+                <div class="col">
+                <input type="text" class="form-control" placeholder="Zip">
+                </div>
+                </div>
+        </form>
+
+    
+           
 </div>
     
 </body>
