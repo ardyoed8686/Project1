@@ -20,7 +20,6 @@ measurementId: "G-P5RN8G26LN"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 // Initialize database
 var database = firebase.database();
 
@@ -28,26 +27,59 @@ var apiKey = "X1-ZWz17l8xablyiz_2ox88";
 var queryURLZillow = "https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id="+ apiKey+ "&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
 
 
-
+jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
 
 $(".submit-btn").on("click",function(event){
     // Prevent refreshing when clicking submit btn
-    event.preventDefault();
-
+    // event.preventDefault();
     // var description = $("#job-description").val().trim();
     // var loc = $("#input-location").val().trim();
     var queryURLJobs = "https://jobs.github.com/positions.json?description=";
     description = "python";
     var loc = "San Francisco";
-    console.log(queryURLJobs+description+"&location="+loc);
+    console.log(queryURLJobs+description+"&location="+loc+ "&page=1");
     $.ajax({
-        url: queryURLJobs+ description + "&location=" +loc,
+        url: queryURLJobs+ description + "&location=" +loc +"&page=1",
         method: "GET"
     }).then(function(response){
         console.log(response);
+        var len = response.length;
+        for (var i = 0; i < len; i++){
+            var title = response[i].title;
+            var company = response[i].company;
+            var locat = response[i].location;
+            var descr = response[i].description;
+            var limitLength = 300;
+            if (descr.length > limitLength){
+                descr = descr.substr(0,limitLength-2)+'...';
+            }
+            var link = response[i].url;
+
+            var newDiv = $("<div>");
+            newDiv.addClass("row");
+            newDiv.addClass("job-list");
+            newDiv.append("<h3>"+title+"</h3>");
+            newDiv.append("<h4>"+company+"</h4>");
+            newDiv.append("<h4>"+locat+"</h4>");
+            newDiv.append("<p>"+descr+"</p>");
+            newDiv.attr("href",link);
+            $(".job-results").append(newDiv);
+        }
     });
 
 })
+
+
+// $(".job-list").on("click",function(event){
+//     var link = $(this).attr("href");
+//     console.log(link);
+//     $(".job-list").load(link);
+//     return false;
+// })
 
 
 

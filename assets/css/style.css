@@ -20,15 +20,15 @@ body {
 }
 
 .container {
-    float: left;
+    /* float: left; */
     top: 35%;
-    text-align: center;
+    /* text-align: center; */
     font-family: 'Condiment', cursive;
     color: navy;
 
 }
 
-#location-search{
+/* #location-search{
     position: relative;
     top: 300px;
-}
+} */
