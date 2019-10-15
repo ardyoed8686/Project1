@@ -33,12 +33,10 @@ h1 {
 
 #location-search{
     position: relative;
-    top: 100px;
+    top: 450px;
 }
 
 .test-1 {
-    position: absolute;
-    bottom: 100px;
     z-index: 100;
 
 }
@@ -55,3 +53,7 @@ h1 {
     justify-content: center;
 }
 
+.img-fluid:hover {
+    border: solid 2px #666;
+    box-shadow: 3px 4px 9px #787878;
+}
