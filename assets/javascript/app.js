@@ -41,15 +41,45 @@ $(".submit-btn").on("click",function(event){
     var queryURLJobs = "https://jobs.github.com/positions.json?description=";
     description = "python";
     var loc = "San Francisco";
-    console.log(queryURLJobs+description+"&location="+loc);
+    console.log(queryURLJobs+description+"&location="+loc+ "&page=1");
     $.ajax({
-        url: queryURLJobs+ description + "&location=" +loc,
+        url: queryURLJobs+ description + "&location=" +loc +"&page=1",
         method: "GET"
     }).then(function(response){
         console.log(response);
+        var len = response.length;
+        for (var i = 0; i < len; i++){
+            var title = response[i].title;
+            var company = response[i].company;
+            var locat = response[i].location;
+            var descr = response[i].description;
+            var limitLength = 300;
+            if (descr.length > limitLength){
+                descr = descr.substr(0,limitLength-2)+'...';
+            }
+            var link = response[i].url;
+
+            var newDiv = $("<div>");
+            newDiv.addClass("row");
+            newDiv.addClass("job-list");
+            newDiv.append("<h3>"+title+"</h3>");
+            newDiv.append("<h4>"+company+"</h4>");
+            newDiv.append("<h4>"+locat+"</h4>");
+            newDiv.append("<p>"+descr+"</p>");
+            newDiv.attr("href",link);
+            $(".job-results").append(newDiv);
+        }
     });
 
 })
+
+
+// $(".job-list").on("click",function(event){
+//     var link = $(this).attr("href");
+//     console.log(link);
+//     $(".job-list").load(link);
+//     return false;
+// })
 
 
 
