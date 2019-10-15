@@ -4,7 +4,6 @@
 // 4.by clicking housing btn, another bootstrap card pops up, shows the housing results, average rent ...
 // use dummy array for limited api calls
 // fallback middle of sanfrancisco address, try to find business address
-// looking add header for ajax cors, if it does not solves, use cors anywhere heroku app
 
 
 // Your web app's Firebase configuration
