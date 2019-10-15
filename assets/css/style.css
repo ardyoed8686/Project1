@@ -57,3 +57,12 @@ h1 {
     border: solid 2px #666;
     box-shadow: 3px 4px 9px #787878;
 }
+
+
+.joblist{
+    margin-left: 60px;
+   width: 80%;
+    /*background: lightcoral;*/
+
+}
+

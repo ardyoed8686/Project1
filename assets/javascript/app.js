@@ -58,14 +58,11 @@ $(".submit-btn").on("click",function(event){
             }
             var link = response[i].url;
 
-            var newDiv = $("<div style='float:left'>");
-            newDiv.addClass("row");
-          
-            newDiv.addClass("job-list");
-            
-            newDiv.append("<h3>"+title+'<br>'+"</h3>");
-            
-            newDiv.append("<h4>"+'<br>'+company+"</h4>");
+            var newDiv = $("<div>");
+            //newDiv.addClass("job-results");
+            newDiv.addClass("joblist");
+            newDiv.append("<h3>"+title+"</h3>");
+            newDiv.append("<h3>"+company+"<h3>");
             newDiv.append("<h4>"+locat+"</h4>");
             newDiv.append("<p>"+descr+"</p>");
             newDiv.attr("href",link);
@@ -77,10 +74,10 @@ $(".submit-btn").on("click",function(event){
 })
 
 
- $("#jobid").on("click",'.job-list',function(event){
-    var link = $(this).attr("href");
+ $("#job").on("click",'.joblist',function(event){
+    var link = $(this);
+    window.open($(this).attr("href"),);
     console.log(link);
-    $("#jobdescription").append(link);
    
   })
 
