@@ -40,7 +40,7 @@ $(".submit-btn").on("click",function(event){
     var queryURLJobs = "https://jobs.github.com/positions.json?description=";
     description = "python";
     var loc = "San Francisco";
-    console.log(queryURLJobs+description+"&location="+loc+ "&page=1");
+    // console.log(queryURLJobs+description+"&location="+loc+ "&page=1");
     $.ajax({
         url: queryURLJobs+ description + "&location=" +loc +"&page=1",
         method: "GET"
