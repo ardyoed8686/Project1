@@ -6,8 +6,29 @@
 // fallback middle of sanfrancisco address, try to find business address
 // looking add header for ajax cors, if it does not solves, use cors anywhere heroku app
 
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+apiKey: "AIzaSyCjqbNE-e9ctONlDBQD6LYc_iVlD77_hZ4",
+authDomain: "full-stack-bootcamp-1681b.firebaseapp.com",
+databaseURL: "https://full-stack-bootcamp-1681b.firebaseio.com",
+projectId: "full-stack-bootcamp-1681b",
+storageBucket: "full-stack-bootcamp-1681b.appspot.com",
+messagingSenderId: "797802791776",
+appId: "1:797802791776:web:f435d46a7d541023a4d405",
+measurementId: "G-P5RN8G26LN"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+// Initialize database
+var database = firebase.database();
+
 var apiKey = "X1-ZWz17l8xablyiz_2ox88";
 var queryURLZillow = "https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id="+ apiKey+ "&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
+
+
+
 
 $(".submit-btn").on("click",function(event){
     // Prevent refreshing when clicking submit btn
