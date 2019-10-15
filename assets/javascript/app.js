@@ -57,7 +57,7 @@ $(".submit-btn").on("click",function(event){
                 descr = descr.substr(0,limitLength-2)+'...';
             }
             var link = response[i].url;
-
+            console.log(link);
             var newDiv = $("<div>");
             newDiv.addClass("row");
             newDiv.addClass("job-list");
