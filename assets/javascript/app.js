@@ -20,7 +20,6 @@ measurementId: "G-P5RN8G26LN"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 // Initialize database
 var database = firebase.database();
 
@@ -28,12 +27,15 @@ var apiKey = "X1-ZWz17l8xablyiz_2ox88";
 var queryURLZillow = "https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id="+ apiKey+ "&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
 
 
-
+jQuery.ajaxPrefilter(function(options) {
+    if (options.crossDomain && jQuery.support.cors) {
+        options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+    }
+});
 
 $(".submit-btn").on("click",function(event){
     // Prevent refreshing when clicking submit btn
-    event.preventDefault();
-
+    // event.preventDefault();
     // var description = $("#job-description").val().trim();
     // var loc = $("#input-location").val().trim();
     var queryURLJobs = "https://jobs.github.com/positions.json?description=";
