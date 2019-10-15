@@ -58,14 +58,18 @@ $(".submit-btn").on("click",function(event){
             }
             var link = response[i].url;
 
-            var newDiv = $("<div>");
+            var newDiv = $("<div style='float:left'>");
             newDiv.addClass("row");
+          
             newDiv.addClass("job-list");
-            newDiv.append("<h3>"+title+"</h3>");
-            newDiv.append("<h4>"+company+"</h4>");
+            
+            newDiv.append("<h3>"+title+'<br>'+"</h3>");
+            
+            newDiv.append("<h4>"+'<br>'+company+"</h4>");
             newDiv.append("<h4>"+locat+"</h4>");
             newDiv.append("<p>"+descr+"</p>");
             newDiv.attr("href",link);
+           // newDiv.addClass("float","left");
             $(".job-results").append(newDiv);
         }
     });
@@ -73,12 +77,12 @@ $(".submit-btn").on("click",function(event){
 })
 
 
-// $(".job-list").on("click",function(event){
-//     var link = $(this).attr("href");
-//     console.log(link);
-//     $(".job-list").load(link);
-//     return false;
-// })
+ $("#jobid").on("click",'.job-list',function(event){
+    var link = $(this).attr("href");
+    console.log(link);
+    $("#jobdescription").append(link);
+   
+  })
 
 
 
