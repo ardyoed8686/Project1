@@ -48,7 +48,6 @@ var cityCode = [
 ];
 
 var indicatorCode = [
-    "MRPST", //Studio
     "MRP1B", //1 Bedroom
     "MRP2B", //2 Bedroom
     "MRP3B", //3 Bedroom
@@ -56,7 +55,20 @@ var indicatorCode = [
     "MR51B" // 5+ Bedroom
 ]
 
+var cityRef = database.ref("/housing_price");
 
+function rentalPricePush(){
+    for (var i = 0; i < cityCode.length; i++){
+        var city = cityCode[i][0];
+        var code = cityCode[i][1];
+        var rentalPrice = getCityPrice
+        if (cityRef){
+            cityRef.push({
+
+            })
+        }
+    }
+}
 
 // using herokuapp to prevent CORS error
 jQuery.ajaxPrefilter(function(options) {
@@ -125,9 +137,33 @@ $(document).on("click",".find-housing-btn",function(event){
     newDiv.addClass("housing-lists")
     newDiv.text("hello");
     $(".housing-listings").append(newDiv);
+    var medianRentalPrice = 0;
+    console.log(medianRentalPrice);
 });
 
 
+function getCityPrice(city,citycode,indicatorCode) {
+    var queryURL = "https://www.quandl.com/api/v3/datasets/ZILLOW/C"+citycode+"_"+indicatorCode+".json?api_key="+quandlApiKey+"&rows=1";
 
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response){
+        rentalPrice = response.dataset.data[0][1];
+
+        var newDiv = $("<div>");
+        newDiv.addClass("row");
+        newDiv.addClass("housing-lists");
+        
+        newDiv.append("<p>The median rental price of " + city + " is " + rentalPrice);
+        $(".housing-listings").append(newDiv);
+    })
+
+}
+getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[0]);
+getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[1]);
+// getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[2]);
+// getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[3]);
+// getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[4]);
 
 
