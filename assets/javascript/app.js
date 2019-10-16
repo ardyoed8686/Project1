@@ -27,6 +27,38 @@ var queryURLZillow = "https://www.zillow.com/webservice/GetDeepSearchResults.htm
 
 var quandlApiKey ="nQsyxm1bajs_XJxtiCCu";
 
+var cityCode = [
+    ["Aliso Viejo","994"],
+    ["San Diego","9"],
+    ["San Francisco", "13"],
+    ["Mountain View", "328"],
+    ["Thousands Oaks", "CA"],
+    ["Sherman Oaks", "506"],
+    ["Los Angeles", "2"],
+    ["Sunnyvale","195"],
+    ["Santa Monica","392"]
+    ["Palo Alto","402"],
+    ["Universal City","5072"],
+    ["Santa Clara","167"],
+    ["Redwood City","299"],
+    ["Cupertino","537"],
+    ["Pleasanton","369"],
+    ["Mill Valley","1174"],
+    ["Santa Barbara","461"]
+];
+
+var indicatorCode = [
+    "MRPST", //Studio
+    "MRP1B", //1 Bedroom
+    "MRP2B", //2 Bedroom
+    "MRP3B", //3 Bedroom
+    "MRP4B", //4 Bedroom
+    "MR51B" // 5+ Bedroom
+]
+
+
+
+// using herokuapp to prevent CORS error
 jQuery.ajaxPrefilter(function(options) {
     if (options.crossDomain && jQuery.support.cors) {
         options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
@@ -35,12 +67,10 @@ jQuery.ajaxPrefilter(function(options) {
 
 $(".submit-btn").on("click",function(event){
     // Prevent refreshing when clicking submit btn
-    // event.preventDefault();
+    event.preventDefault();
     var description = $("#input-job").val().trim();
     var loc = $("#input-location").val().trim();
     var queryURLJobs = "https://jobs.github.com/positions.json?description=";
-    // description = "python";
-    // var loc = "San Francisco";
     console.log(queryURLJobs+description+"&location="+loc+ "&page=1");
     $.ajax({
         url: queryURLJobs+ description + "&location=" +loc +"&page=1",
@@ -88,6 +118,13 @@ $(document).on("click",".find-housing-btn",function(event){
     event.preventDefault();
     var loc = $(this).attr("data-place");
     // console.log(loc);
+    $(".job-results").empty();
+
+    var newDiv = $("<div>");
+    newDiv.addClass("row");
+    newDiv.addClass("housing-lists")
+    newDiv.text("hello");
+    $(".housing-listings").append(newDiv);
 });
 
 
