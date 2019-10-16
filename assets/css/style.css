@@ -57,3 +57,10 @@ h1 {
     border: solid 2px #666;
     box-shadow: 3px 4px 9px #787878;
 }
+
+.job-results .row {
+    margin-left: 5%;
+    margin-right: 5%;
+    justify-content: left;
+    display: block;
+}
