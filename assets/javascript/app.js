@@ -35,11 +35,11 @@ jQuery.ajaxPrefilter(function(options) {
 $(".submit-btn").on("click",function(event){
     // Prevent refreshing when clicking submit btn
     // event.preventDefault();
-    // var description = $("#job-description").val().trim();
-    // var loc = $("#input-location").val().trim();
+    var description = $("#input-job").val().trim();
+    var loc = $("#input-location").val().trim();
     var queryURLJobs = "https://jobs.github.com/positions.json?description=";
-    description = "python";
-    var loc = "San Francisco";
+    // description = "python";
+    // var loc = "San Francisco";
     console.log(queryURLJobs+description+"&location="+loc+ "&page=1");
     $.ajax({
         url: queryURLJobs+ description + "&location=" +loc +"&page=1",
@@ -53,6 +53,7 @@ $(".submit-btn").on("click",function(event){
             var locat = response[i].location;
             var descr = response[i].description;
             var limitLength = 300;
+            // using substr to reduce the text of job description
             if (descr.length > limitLength){
                 descr = descr.substr(0,limitLength-2)+'...';
             }
@@ -61,11 +62,14 @@ $(".submit-btn").on("click",function(event){
             var newDiv = $("<div>");
             newDiv.addClass("row");
             newDiv.addClass("job-list");
-            newDiv.append("<h3>"+title+"</h3>");
-            newDiv.append("<h4>"+company+"</h4>");
-            newDiv.append("<h4>"+locat+"</h4>");
+
+            var titleLink = $("<h4><a href='"+link+"'>"+title+"</a></h4>");
+            newDiv.append(titleLink);
+            newDiv.append("<h5>"+company+"</h5>");
+            newDiv.append("<h5>"+locat+"</h5>");
             newDiv.append("<p>"+descr+"</p>");
             newDiv.attr("href",link);
+            newDiv.append("<hr>");
             $(".job-results").append(newDiv);
         }
     });
