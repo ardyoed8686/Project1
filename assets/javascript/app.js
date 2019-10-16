@@ -4,6 +4,7 @@
 // 2. match location from github jobs and citycode on quandl for getcityprice function (commented below on find-housing-btn click callback function)
 // 3. since citycode only have california, need to update countrywide.
 // 4. after this is done, use other API to use company address to use getSearchResults zillow API.
+// 5. need input validation as well
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -54,20 +55,21 @@ var indicatorCode = [
     "MR51B" // 5+ Bedroom
 ]
 
-var cityRef = database.ref("/housing_price");
+// TODO: DB stuff, will be added for limited API call.
+// var cityRef = database.ref("/housing_price");
 
-function rentalPricePush(){
-    for (var i = 0; i < cityCode.length; i++){
-        var city = cityCode[i][0];
-        var code = cityCode[i][1];
-        var rentalPrice = getCityPrice
-        if (cityRef){
-            cityRef.push({
+// function rentalPricePush(){
+//     for (var i = 0; i < cityCode.length; i++){
+//         var city = cityCode[i][0];
+//         var code = cityCode[i][1];
+//         var rentalPrice = getCityPrice
+//         if (cityRef){
+//             cityRef.push({
 
-            })
-        }
-    }
-}
+//             })
+//         }
+//     }
+// }
 
 // using herokuapp to prevent CORS error
 jQuery.ajaxPrefilter(function(options) {

@@ -50,15 +50,16 @@
     <img src="assets/css/images/1046x616_tablet_reading.jpg" class="card-img" alt="guy reading tablet">
     <div class="card-img-overlay">
         <div class="container test-1" id=location-search>   
-            <form>
+            <form class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-7">
-                        <input type="text" class="form-control" id="input-job" placeholder="Job Title, Companies, Expertise">
+                        <input type="text" class="form-control" id="input-job" placeholder="Job Title, Companies, Expertise" required>
                     </div>
                     <div class="col">
-                        <input type="text" class="form-control" id="input-location" placeholder="City, State, Zip code or Country">
+                        <input type="text" class="form-control" id="input-location" placeholder="City, State, Zip code or Country" required>
                     </div>
                 </div>
+                
                 <button type="button" class="btn btn-primary submit-btn">Search</button>
             </form>
                                                     
@@ -123,10 +124,15 @@
         </thead>
         <tbody class="housing-table"></tbody>
     </table>
+    <div class="row">
+        Rental Price Data is from Quandl Zillow Real Estate Research API.
+    </div>
 </div>
 
 
 </div> <!-- Closing div-->
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="assets/javascript/app.js"></script>
 </body>
 </html>
