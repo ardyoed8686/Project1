@@ -1,10 +1,9 @@
-// 1.User input: Job category, location
-// 2.github jobs response => job title, location, how to apply (link)
-// 3.on next to location of jobs, find housing btn
-// 4.by clicking housing btn, another bootstrap card pops up, shows the housing results, average rent ...
-// use dummy array for limited api calls
-// fallback middle of sanfrancisco address, try to find business address
 
+// fallback middle of sanfrancisco address, try to find business address
+// TODO: 1.use dummy array for limited api call
+// 2. match location from github jobs and citycode on quandl for getcityprice function (commented below on find-housing-btn click callback function)
+// 3. since citycode only have california, need to update countrywide.
+// 4. after this is done, use other API to use company address to use getSearchResults zillow API.
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -125,23 +124,20 @@ $(".submit-btn").on("click",function(event){
 
 })
 
-// using data attribute to track the location of the company when clicking find-housing button
+// using data attribute to track the location of the company when clicking find-housing button (UPDATING)
 $(document).on("click",".find-housing-btn",function(event){
     event.preventDefault();
     var loc = $(this).attr("data-place");
-    // console.log(loc);
     $(".job-results").empty();
 
-    var newDiv = $("<div>");
-    newDiv.addClass("row");
-    newDiv.addClass("housing-lists")
-    newDiv.text("hello");
-    $(".housing-listings").append(newDiv);
-    var medianRentalPrice = 0;
-    console.log(medianRentalPrice);
+    $(".housing-city").html("<h4> Median rental price of "+loc+" is");
+    $(".housing-listings").css("display","block");
+
+    // TODO: match loc and citycode then call getCityPrice function in this callback to update table
+
 });
 
-
+// This function updates table by using quandl API to retrieve median rental price
 function getCityPrice(city,citycode,indicatorCode) {
     var queryURL = "https://www.quandl.com/api/v3/datasets/ZILLOW/C"+citycode+"_"+indicatorCode+".json?api_key="+quandlApiKey+"&rows=1";
 
@@ -150,20 +146,36 @@ function getCityPrice(city,citycode,indicatorCode) {
         method: "GET"
     }).then(function(response){
         rentalPrice = response.dataset.data[0][1];
+        if (indicatorCode === "MRP1B"){
+            roomSize = "1 Bedroom";
+        } else if (indicatorCode === "MRP2B"){
+            roomSize = "2 Bedroom";
+        } else if (indicatorCode === "MRP3B"){
+            roomSize = "3 Bedroom";
+        } else if (indicatorCode === "MRP4B"){
+            roomSize = "4 Bedroom";
+        } else{
+            roomSize = "5 Bedroom or more";
+        }
 
-        var newDiv = $("<div>");
-        newDiv.addClass("row");
-        newDiv.addClass("housing-lists");
-        
-        newDiv.append("<p>The median rental price of " + city + " is " + rentalPrice);
-        $(".housing-listings").append(newDiv);
+        var newTr = $("<tr>");
+        $(".housing-table").append(newTr);
+
+        addTd(roomSize,newTr);
+        addTd(rentalPrice, newTr);
     })
 
 }
-getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[0]);
-getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[1]);
-// getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[2]);
-// getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[3]);
-// getCityPrice(cityCode[1][0],cityCode[1][1],indicatorCode[4]);
 
+// This function add the item into the bootstrap table row.
+function addTd(item,Tr){
+    var Td = $("<td>").text(item);
+    Tr.append(Td);
+}
+
+// find-housing-btn callback function is not done yet, so it is temporary call to show at least we can get the data from quandl API
+getCityPrice(cityCode[2][0],cityCode[2][1],indicatorCode[0]);
+getCityPrice(cityCode[2][0],cityCode[2][1],indicatorCode[1]);
+getCityPrice(cityCode[2][0],cityCode[2][1],indicatorCode[2]);
+getCityPrice(cityCode[2][0],cityCode[2][1],indicatorCode[3]);
 
