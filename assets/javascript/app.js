@@ -25,6 +25,7 @@ var database = firebase.database();
 var apiKey = "X1-ZWz17l8xablyiz_2ox88";
 var queryURLZillow = "https://www.zillow.com/webservice/GetDeepSearchResults.htm?zws-id="+ apiKey+ "&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
 
+var quandlApiKey ="nQsyxm1bajs_XJxtiCCu";
 
 jQuery.ajaxPrefilter(function(options) {
     if (options.crossDomain && jQuery.support.cors) {
@@ -59,6 +60,7 @@ $(".submit-btn").on("click",function(event){
             }
             var link = response[i].url;
 
+            // dynamically making job descriptions and buttons
             var newDiv = $("<div>");
             newDiv.addClass("row");
             newDiv.addClass("job-list");
@@ -66,9 +68,14 @@ $(".submit-btn").on("click",function(event){
             var titleLink = $("<h4><a href='"+link+"'>"+title+"</a></h4>");
             newDiv.append(titleLink);
             newDiv.append("<h5>"+company+"</h5>");
-            newDiv.append("<h5>"+locat+"</h5>");
+            newDiv.append("<h5 class='job-location'>"+locat+"</h5>");
             newDiv.append("<p>"+descr+"</p>");
             newDiv.attr("href",link);
+            var newBtn = $("<button type='button' class='btn btn-success find-housing-btn'>");
+            newBtn.text("Find Housing price info");
+            newBtn.attr("data-place",locat);
+            newDiv.append(newBtn);
+
             newDiv.append("<hr>");
             $(".job-results").append(newDiv);
         }
@@ -76,13 +83,13 @@ $(".submit-btn").on("click",function(event){
 
 })
 
+// using data attribute to track the location of the company when clicking find-housing button
+$(document).on("click",".find-housing-btn",function(event){
+    event.preventDefault();
+    var loc = $(this).attr("data-place");
+    // console.log(loc);
+});
 
-// $(".job-list").on("click",function(event){
-//     var link = $(this).attr("href");
-//     console.log(link);
-//     $(".job-list").load(link);
-//     return false;
-// })
 
 
 
