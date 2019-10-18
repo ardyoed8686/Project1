@@ -77,6 +77,33 @@ jQuery.ajaxPrefilter(function(options) {
         options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
     }
 });
+$("#input-job").on("focusout", (input) => {
+    // console.log($(this).val());
+    console.log(input.currentTarget.value);
+    var userInput = input.currentTarget.value;
+    if (userInput.length === 0 ) {
+        console.log($("#input-error"));
+        $("#input-error").html("Do not leave blank.");
+        $(".submit-btn").attr("disabled", "disabled");
+    } else {
+        $("#input-error").empty();
+        $(".submit-btn").removeAttr("disabled");
+    }
+});
+
+$("#input-location").on("focusout", (input) => {
+    // console.log($(this).val());
+    console.log(input.currentTarget.value);
+    var userInput = input.currentTarget.value;
+    if (userInput.length === 0 ) {
+        console.log($("#input-error"));
+        $("#input-error").html("Do not leave blank.");
+        $(".submit-btn").attr("disabled", "disabled");
+    } else {
+        $("#input-error").empty();
+        $(".submit-btn").removeAttr("disabled");
+    }
+});
 
 $(".submit-btn").on("click",function(event){
     // Prevent refreshing when clicking submit btn

@@ -23,7 +23,6 @@ h1 {
     from {
         margin-left: 100%;
         width: 300%;
-
     }
     to {
         margin-left: 0%;
@@ -34,12 +33,13 @@ h1 {
 #location-search{
     position: relative;
     top: 450px;
+    z-index: 50;
 }
 
-.test-1 {
+/* .test-1 {
     z-index: 100;
 
-}
+} */
 
 .img-fluid{
     border-radius: 50%;
@@ -63,4 +63,7 @@ h1 {
     margin-right: 5%;
     justify-content: left;
     display: block;
+}
+.nav-head i {
+color: aqua;
 }

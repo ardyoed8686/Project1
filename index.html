@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <!-- Bootstrap Library -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- font awesome -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow&display=swap" rel="stylesheet">
+
 
 <!-- CSS Stylesheets -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -33,9 +38,20 @@
         </div>
     </div>
 
-<br>
 <!-- nave bar -->
-<ul class="nav justify-content-end">
+<div class="nav-head">
+    <ul class="nav">
+        <li class="nav-item">
+        <a class="nav-link active" href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="https://www.facebook.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </li>
+    </ul>
+    <ul class="nav justify-content-end">
         <li class="nav-item">
         <a class="nav-link active">Sign In</a>
         </li>
@@ -43,8 +59,8 @@
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
     </ul>
- 
-<br>
+</div>
+
 <!-- search box -->
 <div class="card bg-dark text-white">
     <img src="assets/css/images/1046x616_tablet_reading.jpg" class="card-img" alt="guy reading tablet">
@@ -54,6 +70,7 @@
                 <div class="form-row">
                     <div class="col-7">
                         <input type="text" class="form-control" id="input-job" placeholder="Job Title, Companies, Expertise" required>
+                        <div id="input-error"></div>
                     </div>
                     <div class="col">
                         <input type="text" class="form-control" id="input-location" placeholder="City, State, Zip code or Country" required>
